@@ -1,0 +1,30 @@
+[package]
+name = "porygon"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["staging", "debug"]
+# Whether the bot assumes to be running on the staging server and makes all the necessary overrides.
+staging = []
+# Whether debug logging is enabled.
+debug = []
+
+[workspace]
+members = [
+  ".",
+  "macros"
+]
+
+[dependencies]
+serenity = { version = "0.10.10", default-features = false, features = ["client", "gateway", "rustls_backend", "model", "unstable_discord_api", "collector"] }
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+dotenv = { version = "0.15.0" }
+porygon_macros = { path = "macros" }
+sealed = "0.4.0"
+serde_json = "1"
+custom_debug = "0.5.0"
+rand = "0.8.5"
+tracing = "0.1.34"
+tracing-subscriber = { version = "0.3.11", features = ["env-filter"] }
+tracing-tree = "0.2.0"

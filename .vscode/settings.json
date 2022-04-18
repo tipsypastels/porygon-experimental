@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "search.exclude": {
+    "**/Cargo.lock": true,
+    "**/target": true
+  }
+}
