@@ -78,7 +78,7 @@ impl Setup {
 
             step.execute(args).await?;
 
-            info!("Setup step complete: {}!", name);
+            info!(%name, "completed");
         }
 
         Ok(())

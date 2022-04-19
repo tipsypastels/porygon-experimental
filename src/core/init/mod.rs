@@ -60,13 +60,17 @@ impl Step for InitStep {
     type Operand = Init;
     type Collection = ControllerCollection<Self>;
 
-    const NAME: &'static str = "init";
+    const NAME: &'static str = "Init";
 
     fn new(controller: Controller) -> Self {
         Self {
             controller,
             inits: HashMap::default(),
         }
+    }
+
+    fn operand_count(&self) -> usize {
+        self.inits.len()
     }
 
     fn append(&mut self, init: Init) {

@@ -6,9 +6,9 @@ use rand::{seq::SliceRandom, thread_rng};
 /// TODO: Tasks for this.
 #[init]
 fn activity(_: &InitArgs) {
-    let message = MESSAGES.choose(&mut thread_rng()).unwrap();
+    // let message = MESSAGES.choose(&mut thread_rng()).unwrap();
 
-    println!("{}", message);
+    // println!("{}", message);
 }
 
 /// Installs the `activity` system.

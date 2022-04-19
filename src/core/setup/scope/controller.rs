@@ -4,6 +4,7 @@ use crate::core::controller::Controller;
 use serenity::http::client::Http;
 use std::borrow::Cow;
 use std::collections::{hash_map::IntoIter, HashMap};
+use std::fmt;
 
 #[sealed]
 #[async_trait]
@@ -14,18 +15,17 @@ impl Scope for Controller {
         }
 
         // TODO: actual error message here.
-        println!("Not connected to {self}!");
+        warn!(%self, "disconnected");
         Skip::Skip
     }
 
     fn suffix(&self) -> Cow<str> {
-        self.to_string().into()
+        format!("::{}", self).into()
     }
 }
 
 /// Collection for setup steps that depend on being added under a specific controller.
 /// Implemented as a map of controller to step instance.
-#[derive(Debug)]
 pub struct ControllerCollection<S: Step>(HashMap<Controller, S>);
 
 #[sealed]
@@ -49,5 +49,15 @@ impl<S: Step> IntoIterator for ControllerCollection<S> {
 
     fn into_iter(self) -> Self::IntoIter {
         self.0.into_iter()
+    }
+}
+
+impl<S: Step> fmt::Debug for ControllerCollection<S> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for (controller, step) in &self.0 {
+            write!(f, "{}({})", controller, step.operand_count())?;
+        }
+
+        Ok(())
     }
 }

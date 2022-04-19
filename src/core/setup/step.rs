@@ -30,15 +30,18 @@ pub trait Step: Sized + Send + Sync + 'static {
     ///
     type Collection: Collection<Self>;
 
-    /// Name of the initialization step. Conventionally a lowercased
-    /// representation with the `Step` suffix removed, e.g. `init` for `InitStep`.
+    /// Name of the initialization step. Conventionally a representation
+    /// with the `Step` suffix removed, e.g. `Init` for `InitStep`.
     const NAME: &'static str;
 
     /// Name of the step and its scope, for logging purposes. Need not
     /// be overridden.
     fn name_in(&self, scope: &StepScope<Self>) -> String {
-        format!("{}.{}", Self::NAME, scope.suffix())
+        format!("{}{}", Self::NAME, scope.suffix())
     }
+
+    /// Number of current operands. Used for logging.
+    fn operand_count(&self) -> usize;
 
     /// Returns a new instance of the setup step for a given scope. The type of
     /// the scope is based on the type of the collection.

@@ -102,15 +102,15 @@ impl fmt::Display for ControllerBrain {
     #[cfg(feature = "staging")]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Global => write!(f, "global*"),
-            Self::Guild(nick) => write!(f, "{nick}*"),
+            Self::Global => write!(f, "*Global"),
+            Self::Guild(nick) => write!(f, "*{nick}"),
         }
     }
 
     #[cfg(not(feature = "staging"))]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Global => write!(f, "global"),
+            Self::Global => write!(f, "Global"),
             Self::Guild(nick) => write!(f, nick),
         }
     }

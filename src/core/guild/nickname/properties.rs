@@ -20,19 +20,19 @@ pub struct GuildNicknameProperties {
 /// Properties for the PokéCommunity public server.
 pub const PROPERTIES_POKECOM: GuildNicknameProperties = GuildNicknameProperties {
     id: GuildId(157983957902819328),
-    name: "pokecom",
+    name: "Pokecom",
 };
 
 /// Properties for the PokéCommunity Staff private server.
 pub const PROPERTIES_POKECOM_STAFF: GuildNicknameProperties = GuildNicknameProperties {
     id: GuildId(193103073210662914),
-    name: "pokcomstaff",
+    name: "PokcomStaff",
 };
 
 /// Properties for the Duck Communism private server.
 pub const PROPERTIES_DUCK_COMMUNISM: GuildNicknameProperties = GuildNicknameProperties {
     id: GuildId(322199235825238017),
-    name: "duckcommunism",
+    name: "DuckCommunism",
 };
 
 /// Properties for the override staging server.
@@ -45,7 +45,7 @@ pub const PROPERTIES_DUCK_COMMUNISM: GuildNicknameProperties = GuildNicknameProp
 #[cfg(feature = "staging")]
 pub const PROPERTIES_STAGING: GuildNicknameProperties = GuildNicknameProperties {
     id: GuildId(964389981516881920),
-    name: "staging",
+    name: "Staging",
 };
 
 impl GuildNicknameProperties {

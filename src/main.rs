@@ -1,4 +1,5 @@
 #![warn(missing_docs)]
+#![warn(missing_debug_implementations)]
 
 //! Porygon.
 
@@ -18,7 +19,7 @@ use crate::core::setup::Setup;
 use dotenv::dotenv;
 use serenity::Client;
 use std::env;
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, Registry};
+use tracing_subscriber::{fmt, layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, Registry};
 use tracing_tree::HierarchicalLayer;
 
 #[tokio::main]
@@ -50,11 +51,12 @@ fn env(var: &str) -> String {
 
 fn start_tracing() {
     Registry::default()
+        .with(fmt::layer().compact().without_time())
         .with(EnvFilter::from_default_env())
         .with(
             HierarchicalLayer::new(2)
-                .with_targets(true)
-                .with_bracketed_fields(true),
+                .with_bracketed_fields(true)
+                .with_indent_lines(true),
         )
         .init();
 }

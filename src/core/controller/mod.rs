@@ -11,7 +11,7 @@ mod upload;
 /// specify targets to upload and setup against. For example, each guild has
 /// a controller that can be used as the target of a command upload, as can
 /// `GLOBAL` for uploads without a specific guild.
-#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+#[derive(PartialEq, Eq, Hash, Clone, Copy)]
 pub struct Controller {
     brain: ControllerBrain,
 }
@@ -46,6 +46,12 @@ impl Controller {
 impl fmt::Display for Controller {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.brain)
+    }
+}
+
+impl fmt::Debug for Controller {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("Controller").field(&self.brain).finish()
     }
 }
 
